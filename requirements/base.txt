@@ -1,5 +1,5 @@
 # Base
-pillow==5.4.1
+pillow==6.2.0
 
 # Statistics libraries
 numpy==1.17.2
