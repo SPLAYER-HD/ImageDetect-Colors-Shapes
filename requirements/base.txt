@@ -1,0 +1,6 @@
+# Base
+pillow==5.4.1
+
+# Statistics libraries
+numpy==1.17.2
+opencv-contrib-python==4.1.2.30

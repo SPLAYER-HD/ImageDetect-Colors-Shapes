@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  shapes: &shapes
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: shapes_local/diego:v1
+    volumes:
+      - ./resources:/shapes_images
+    env_file:
+      - ./.envs/.local/.shapes
+    
