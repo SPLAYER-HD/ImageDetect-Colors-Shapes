@@ -8,7 +8,7 @@ import sys
 
 class Classsify():
     ''' class to classify'''
-    def run(self, result):
+    def run(self, result, shape):
         print ('Running my own algorithm')
         image_path = '/resources/'+os.getenv('SMALL_IMAGE', 'small-shades-of-grey.png')
         img = Image.open(image_path)

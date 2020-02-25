@@ -7,20 +7,23 @@
 sudo docker-compose -f local.yml build
 ```
 
-### 2 run docker with cv2 algorithm
+### 2 run docker with cv2 algorithm (Important, only work with BIN extension)
 With this command you can test with the default image with default method 'cv2'. With this version if a pixel has a pixel with the same color in diagonal is part of the same shape
+
+This algorithm maybe throw false positives when the shape evaluated has a different color shape bigger around it, this because of Euclidean distance says that closer color is the other shape.
+
 ![Test Image ](https://github.com/SPLAYER-HD/ImageDetect-Colors-Shapes/blob/master/resources/shades-of-grey.png)
 
 ```bash
 sudo docker run shapes_local/diego:v1
 ```
 
-### 3 run docker with other images
+### 3 run docker with other images (Important, only work with tiny images and with PNG extension)
 You have to create a folder called resources, put the images into it and from a previous folder run this command:
 (you can change the image name with the environment variable called IMAGE)
 
 ```bash
-sudo docker run -v $pwd:/resources -e "IMAGE=small-shades-of-grey.png" shapes_local/diego:v1
+sudo docker run -v $pwd:/resources -e "IMAGE=sample.bin" shapes_local/diego:v1
 ```
 
 ### 4 run docker with my own algorithm (Important, only work with tiny images)

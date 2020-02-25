@@ -3,34 +3,35 @@
 # import the necessary packages
 import argparse
 import cv2
-import numpy as np
 
+from collections import OrderedDict
 from load_data import LoadData
 from transform_image import TransformImage
+from find_color import FindColor
 
 
 class Classsify():
     ''' class to classify '''
 
-    def run(self, result):
-        print ('Running cv2 algorithm')
+    def run(self, result, shape):
         loadData = LoadData()
         image = loadData.load()
-        transformImage = TransformImage()
-        edges = transformImage.transform(image)
+        colors = OrderedDict({
+			"black": (0, 0, 0),
+			"gray": (200, 200, 200),
+			"white": (255, 255, 255)})
+        for (i, (name, rgb)) in enumerate(colors.items()):
 
-        cnts, hierarchy = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        contours = sorted(cnts, key=cv2.contourArea, reverse=True)[:10]
+            transformImage = TransformImage()
+            image_transformed = transformImage.transform(image, rgb[0], shape)
+            gray = cv2.cvtColor(image_transformed, cv2.COLOR_BGR2GRAY)
+            blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+            thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]            
+            cnts, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            contours_ = sorted(cnts, key=cv2.contourArea, reverse=True)[:10]
+            contours = [cv2.approxPolyDP(cnt, 3, True) for cnt in cnts]
 
-        for c in contours:
-            x = ((c[0])[0])[0]
-            y = ((c[0])[0])[1]
-
-            color_index = (image[x][y])[0]
-            result[color_index] += 1
-            #cv2.drawContours(image, [c], 0, (100), 5)
-
-        # show the image
-        #cv2.imshow("Image", image)    
-        #cv2.waitKey(0)
+            findColor = FindColor()
+            amount = findColor.run(image_transformed, cnts, gray, rgb[0])
+            result[rgb[0]] = amount
         return result

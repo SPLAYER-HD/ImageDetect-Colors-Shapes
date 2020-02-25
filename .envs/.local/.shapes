@@ -1,3 +1,6 @@
 # Images path
-IMAGES_PATH=/shapes_images
+
+SMALL_IMAGE=small-shades-of-grey.png
+IMAGE=sample.bin
+METHOD=cv2
 

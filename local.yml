@@ -7,7 +7,7 @@ services:
       dockerfile: ./compose/local/Dockerfile
     image: shapes_local/diego:v1
     volumes:
-      - ./resources:/shapes_images
+      - ./resources:/resources
     env_file:
       - ./.envs/.local/.shapes
     
