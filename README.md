@@ -14,8 +14,10 @@ This algorithm maybe throw false positives when the shape evaluated has a differ
 
 ![Test Image ](https://github.com/SPLAYER-HD/ImageDetect-Colors-Shapes/blob/master/resources/shades-of-grey.png)
 
+The shape by default is 256,256 but if you want to change it, you can use the environment variable called SHAPE how you can see in the example
+
 ```bash
-sudo docker run shapes_local/diego:v1
+sudo docker run -e "SHAPE=255,255"  shapes_local/diego:v1
 ```
 
 ### 3 run docker with other images (Important, only work with tiny images and with PNG extension)

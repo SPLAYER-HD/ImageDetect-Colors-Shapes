@@ -3,4 +3,5 @@
 SMALL_IMAGE=small-shades-of-grey.png
 IMAGE=sample.bin
 METHOD=cv2
+SHAPE=256,256
 
