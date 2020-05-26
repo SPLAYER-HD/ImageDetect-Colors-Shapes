@@ -20,7 +20,7 @@ The shape by default is 256,256 but if you want to change it, you can use the en
 sudo docker run -e "SHAPE=255,255"  shapes_local/diego:v1
 ```
 
-### 3 run docker with other images (Important, only work with tiny images and with "bin" extension)
+### 3 run docker with other images (Important, only work with "bin" extension)
 You have to create a folder called resources, put the images into it and from a previous folder run this command:
 (you can change the image name with the environment variable called IMAGE)
 
