@@ -3,5 +3,5 @@ pillow>=6.2.0
 
 # Statistics libraries
 numpy==1.17.2
-opencv-contrib-python==4.1.2.30
+opencv-contrib-python==4.2.0.32
 scipy==1.4.1
